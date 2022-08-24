@@ -9,15 +9,10 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "categoria")
-public class Categoria {
-    @Id
-    @SequenceGenerator(name="categoria_idcategoria_seq",
-            sequenceName="categoria_idcategoria_seq",
-            allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator="categoria_idcategoria_seq")
-    private Long id;
+@SequenceGenerator(name = "SEQUENCE", sequenceName = "categoria_id_seq", allocationSize = 1)
+public class Categoria  extends BaseEntity{
 
-    private String categoriaNome;
+    @Column(name = "nome")
+    private String nome;
 
 }

@@ -1,6 +1,8 @@
 package br.com.ijuda.api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,12 +11,15 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "pagamento")
-public class Pagamento {
+@SequenceGenerator(name = "SEQUENCE", sequenceName = "pagamento_id_seq", allocationSize = 1)
+public class Pagamento extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="SEQUENCE")
-    private Long id;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "data_pagamento")
     private LocalDateTime dataPagamento;
+
+    @Column(name = "valor")
+    private Double valor;
 }

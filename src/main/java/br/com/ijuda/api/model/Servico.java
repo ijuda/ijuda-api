@@ -2,6 +2,7 @@ package br.com.ijuda.api.model;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,15 +10,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "servico")
-public class Servico {
+@SequenceGenerator(name = "SEQUENCE", sequenceName = "servico_id_seq", allocationSize = 1)
+public class Servico extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="SEQUENCE")
-    private Long id;
-
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "valor")
     private Double valor;
 
     @ManyToOne

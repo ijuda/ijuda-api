@@ -1,7 +1,9 @@
 package br.com.ijuda.api.model;
 
+import br.com.ijuda.api.model.enumeration.StatusSolicitacao;
 import com.sun.istack.NotNull;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,15 +11,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "solicitacao_servico")
-public class SolicitacaoServico {
+@SequenceGenerator(name = "SEQUENCE", sequenceName = "solicitacao_servico_id_seq", allocationSize = 1)
+public class SolicitacaoServico extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="SEQUENCE")
-    private Long id;
-
+    @Column(name = "descricao")
     private String descricao;
 
+    @Column(name = "total")
     private Double total;
 
     @ManyToOne
@@ -44,6 +46,7 @@ public class SolicitacaoServico {
     private Endereco endereco;
 
     @NotNull
+    @Column(name = "ativo")
     private Boolean ativo; //todo: mapear no esquema
 
 

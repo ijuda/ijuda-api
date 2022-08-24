@@ -1,4 +1,4 @@
-package br.com.ijuda.api.model;
+package br.com.ijuda.api.model.enumeration;
 
 public enum StatusSolicitacao {
 
