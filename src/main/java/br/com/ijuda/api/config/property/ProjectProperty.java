@@ -3,11 +3,11 @@ package br.com.ijuda.api.config.property;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@ConfigurationProperties("algamoney")
+@ConfigurationProperties("project")
 @Component
 public class ProjectProperty {
 
-	private String originPermitida = "http://localhost:8000";
+	private String originPermitida = "http://localhost:8090";
 
 	private final Seguranca seguranca = new Seguranca();
 
