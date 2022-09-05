@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,6 +35,9 @@ public class PrestadorServico  extends BaseEntity{
     @NotNull
     @Column(name = "ativo")
     private Boolean ativo; //todo: mapear no esquema
+
+    @ManyToMany(mappedBy ="prestadoresServicos")
+    private List<Servico> servicos;
 
 
 }
