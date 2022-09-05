@@ -20,6 +20,10 @@ public class Pagamento extends BaseEntity{
     @Column(name = "data_pagamento")
     private LocalDateTime dataPagamento;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
     @Column(name = "valor")
     private Double valor;
 }
