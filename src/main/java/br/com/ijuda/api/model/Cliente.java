@@ -16,11 +16,13 @@ import javax.persistence.*;
 @SequenceGenerator(name = "SEQUENCE", sequenceName = "cliente_id_seq", allocationSize = 1)
 public class Cliente extends BaseEntity {
 
-    @Column(name = "nome")
-    private String nome;
+    @NotNull
+    @JoinColumn(name = "usuario")
+    @OneToOne(cascade=CascadeType.PERSIST)
+    private Usuario usuario;
 
-    @Column(name = "email")
-    private String email;
+    @Column
+    private byte[] imagem;
 
     @Column(name = "cpf")
     private String cpf;
@@ -33,7 +35,7 @@ public class Cliente extends BaseEntity {
 
     @NotNull
     @Column(name = "ativo")
-    private Boolean ativo; //todo: mapear no esquema
+    private Boolean ativo;
 
 
 }
