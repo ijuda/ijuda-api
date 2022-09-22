@@ -12,6 +12,8 @@ public class Endereco {
 
     private String rua;
 
+    private String bairro;
+
     private Long numero;
 
     private String complemento; //TODO: add no diagrama do banco

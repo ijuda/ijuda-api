@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,9 +23,13 @@ public class Servico extends BaseEntity {
     @Column(name = "valor")
     private Double valor;
 
-    @ManyToOne
-    @JoinColumn(name = "prestador_servico_id")
-    private PrestadorServico prestadorServico;
+    @ManyToMany
+    @JoinTable(
+            name = "servico_prestadoresServicos",
+            joinColumns = @JoinColumn(name = "servico_id"),
+            inverseJoinColumns = @JoinColumn(name = "prestador_servico_id")
+    )
+    private List<PrestadorServico> prestadoresServicos;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
