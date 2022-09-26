@@ -3,6 +3,7 @@ package br.com.ijuda.api.controller;
 import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.ClienteRepository;
 import br.com.ijuda.api.service.ClienteService;
+import br.com.ijuda.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,12 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostMapping
     public ResponseEntity<Cliente> criar(@Valid @RequestBody Cliente cliente, HttpServletResponse response) {
+        usuarioService.criptografar(cliente.getUsuario());
         Cliente clienteSalvo = clienteRepository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
