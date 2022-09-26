@@ -1,18 +1,17 @@
 package br.com.ijuda.api.controller;
 
+import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.model.Usuario;
 import br.com.ijuda.api.repository.UsuarioRepository;
 import br.com.ijuda.api.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
@@ -29,6 +28,12 @@ public class UsuarioController {
         Usuario usuarioSalvo = usuarioService.criptografar(usuario);
         usuarioSalvo = usuarioRepository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+    }
+
+    @GetMapping("/{codigo}")
+    public ResponseEntity<Usuario> buscarPeloCodigo(@PathVariable Long codigo) {
+        Optional<Usuario> usuario = usuarioRepository.findById(codigo);
+        return usuario.isPresent()? ResponseEntity.ok(usuario.get()) : ResponseEntity.notFound().build();
     }
 }
 

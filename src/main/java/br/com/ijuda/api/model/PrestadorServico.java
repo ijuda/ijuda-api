@@ -39,5 +39,10 @@ public class PrestadorServico  extends BaseEntity{
     @ManyToMany(mappedBy ="prestadoresServicos")
     private List<Servico> servicos;
 
+    @NotNull
+    @JoinColumn(name = "usuario")
+    @OneToOne(cascade=CascadeType.PERSIST)
+    private Usuario usuario;
+
 
 }

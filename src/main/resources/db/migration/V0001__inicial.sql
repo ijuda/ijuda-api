@@ -31,7 +31,6 @@ CREATE TABLE prestador_servico (id BIGSERIAL NOT NULL,
                                 complemento varchar(255),
                                 numero int8, pais varchar(255),
                                 rua varchar(255),
-                                nome varchar(255),
                                 telefone varchar(255),
                                 usuario int8, PRIMARY KEY (id));
 
