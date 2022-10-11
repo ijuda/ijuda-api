@@ -33,9 +33,4 @@ public class Cliente extends BaseEntity {
     @NotNull
     @Column(name = "ativo")
     private Boolean ativo;
-
-
-    public Cliente(Long id, Usuario usuario, byte[] imagem, String cpf, String telefone, Endereco endereco, Boolean ativo) {
-        super();
-    }
 }
