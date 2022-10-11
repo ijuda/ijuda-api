@@ -1,10 +1,7 @@
 package br.com.ijuda.api.model;
 
 import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -38,4 +35,7 @@ public class Cliente extends BaseEntity {
     private Boolean ativo;
 
 
+    public Cliente(Long id, Usuario usuario, byte[] imagem, String cpf, String telefone, Endereco endereco, Boolean ativo) {
+        super();
+    }
 }
