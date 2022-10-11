@@ -1,5 +1,7 @@
 package br.com.ijuda.api.controller;
 
+import br.com.ijuda.api.controller.dto.ClienteDTO;
+import br.com.ijuda.api.controller.dto.PrestadorServicoDTO;
 import br.com.ijuda.api.model.PrestadorServico;
 import br.com.ijuda.api.repository.PrestadorServicoRepository;
 import br.com.ijuda.api.service.PrestadorServicoService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,6 +29,11 @@ public class PrestadorServicoController {
     public ResponseEntity<PrestadorServico> criar(@Valid @RequestBody PrestadorServico prestadorServico, HttpServletResponse response) {
         PrestadorServico prestadorServicoSalvo = prestadorServicoRepository.save(prestadorServico);
         return ResponseEntity.status(HttpStatus.CREATED).body(prestadorServicoSalvo);
+    }
+
+    @GetMapping("/prestadoresServico")
+    public ResponseEntity<List<PrestadorServicoDTO>> findAll(){
+        return ResponseEntity.ok(prestadorServicoService.findAll());
     }
 
     @GetMapping("/{codigo}")

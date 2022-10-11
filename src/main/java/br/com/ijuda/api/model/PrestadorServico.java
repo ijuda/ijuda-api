@@ -17,24 +17,18 @@ import java.util.List;
 @SequenceGenerator(name = "SEQUENCE", sequenceName = "prestador_servico_id_seq", allocationSize = 1)
 public class PrestadorServico  extends BaseEntity{
 
-    @Column(name = "nome")
-    private String nome;
-
     @Column(name = "telefone")
     private String telefone;
 
     @Column(name = "cpf")
     private String cpf;
 
-    @Column(name = "email")
-    private String email;
-
     @Embedded
     private Endereco endereco;
 
     @NotNull
     @Column(name = "ativo")
-    private Boolean ativo; //todo: mapear no esquema
+    private Boolean ativo;
 
     @ManyToMany(mappedBy ="prestadoresServicos")
     private List<Servico> servicos;
