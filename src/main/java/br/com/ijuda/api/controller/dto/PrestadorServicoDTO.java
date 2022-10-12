@@ -16,7 +16,7 @@ public class PrestadorServicoDTO {
     private Long id;
     private String telefone;
     private String cpf;
-8    private Endereco endereco;
+    private Endereco endereco;
     private Boolean ativo;
     private List<Servico> servicos;
     private Usuario usuario;
