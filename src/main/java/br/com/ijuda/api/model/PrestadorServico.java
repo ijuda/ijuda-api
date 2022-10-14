@@ -29,9 +29,10 @@ public class PrestadorServico  extends BaseEntity{
     @NotNull
     @Column(name = "ativo")
     private Boolean ativo;
-
+/*
     @ManyToMany(mappedBy ="prestadoresServicos")
     private List<Servico> servicos;
+*/
 
     @NotNull
     @JoinColumn(name = "usuario")

@@ -18,6 +18,5 @@ public class PrestadorServicoDTO {
     private String cpf;
     private Endereco endereco;
     private Boolean ativo;
-    private List<Servico> servicos;
     private Usuario usuario;
 }
