@@ -1,5 +1,7 @@
 package br.com.ijuda.api.controller;
 
+import br.com.ijuda.api.controller.dto.CategoriaDTO;
+import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.model.Categoria;
 import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.CategoriaRepository;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +32,11 @@ public class CategoriaController {
     public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
         Categoria categoriaSalva = categoriaRepository.save(categoria);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
+    }
+
+    @GetMapping("/categorias")
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
+        return ResponseEntity.ok(categoriaService.findAll());
     }
 
     @GetMapping("/{codigo}")

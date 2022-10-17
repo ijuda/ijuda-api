@@ -1,5 +1,6 @@
 package br.com.ijuda.api.controller;
 
+import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.ClienteRepository;
 import br.com.ijuda.api.service.ClienteService;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -31,6 +33,11 @@ public class ClienteController {
         usuarioService.criptografar(cliente.getUsuario());
         Cliente clienteSalvo = clienteRepository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
+    }
+
+    @GetMapping("/clientes")
+    public ResponseEntity<List<ClienteDTO>> findAll(){
+        return ResponseEntity.ok(clienteService.findAll());
     }
 
     @GetMapping("/{codigo}")

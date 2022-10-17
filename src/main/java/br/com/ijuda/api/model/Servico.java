@@ -22,7 +22,7 @@ public class Servico extends BaseEntity {
 
     @Column(name = "valor")
     private Double valor;
-
+/*
     @ManyToMany
     @JoinTable(
             name = "servico_prestadoresServicos",
@@ -30,7 +30,7 @@ public class Servico extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "prestador_servico_id")
     )
     private List<PrestadorServico> prestadoresServicos;
-
+*/
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;

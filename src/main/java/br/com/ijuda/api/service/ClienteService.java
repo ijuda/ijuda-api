@@ -1,11 +1,15 @@
 package br.com.ijuda.api.service;
 
+import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -32,6 +36,19 @@ public class ClienteService {
         return clienteSalvo;
     }
 
+    public List<ClienteDTO> findAll() {
+        List<Cliente> clienteList = clienteRepository.findAll();
+        return clienteList.stream().map(dto -> ClienteDTO.builder()
+                .id(dto.getId())
+                .usuario(dto.getUsuario())
+                .imagem(dto.getImagem())
+                .cpf(dto.getCpf())
+                .telefone(dto.getTelefone())
+                .endereco(dto.getEndereco())
+                .ativo(dto.getAtivo())
+                .build()
+        ).collect(Collectors.toList());
+    }
 }
 
 

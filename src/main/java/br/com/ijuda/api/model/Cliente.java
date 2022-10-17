@@ -1,10 +1,7 @@
 package br.com.ijuda.api.model;
 
 import com.sun.istack.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -36,6 +33,4 @@ public class Cliente extends BaseEntity {
     @NotNull
     @Column(name = "ativo")
     private Boolean ativo;
-
-
 }
