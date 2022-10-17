@@ -47,7 +47,7 @@ public class SolicitacaoServico extends BaseEntity{
 
     @NotNull
     @Column(name = "ativo")
-    private Boolean ativo; //todo: mapear no esquema
+    private Boolean ativo;
 
 
 }
