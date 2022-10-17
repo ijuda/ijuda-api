@@ -1,5 +1,7 @@
 package br.com.ijuda.api.controller;
 
+import br.com.ijuda.api.controller.dto.ServicoDTO;
+import br.com.ijuda.api.controller.dto.SolicitacaoServicoDTO;
 import br.com.ijuda.api.model.PrestadorServico;
 import br.com.ijuda.api.model.SolicitacaoServico;
 import br.com.ijuda.api.repository.SolicitacaoServicoRepository;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,6 +31,12 @@ public class SolicitacaoServicoController {
         SolicitacaoServico solicitacaoServicoSalva = solicitacaoServicoRepository.save(solicitacaoServico);
         return ResponseEntity.status(HttpStatus.CREATED).body(solicitacaoServicoSalva);
     }
+
+    @GetMapping("/solicitacoesservicos")
+    public ResponseEntity<List<SolicitacaoServicoDTO>> findAll(){
+        return ResponseEntity.ok(solicitacaoServicoService.findAll());
+    }
+
 
     @GetMapping("/{codigo}")
     public ResponseEntity<SolicitacaoServico> buscarPeloCodigo(@PathVariable Long codigo) {
