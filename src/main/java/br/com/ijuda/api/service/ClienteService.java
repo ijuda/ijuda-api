@@ -41,7 +41,6 @@ public class ClienteService {
         return clienteList.stream().map(dto -> ClienteDTO.builder()
                 .id(dto.getId())
                 .usuario(dto.getUsuario())
-                .imagem(dto.getImagem())
                 .cpf(dto.getCpf())
                 .telefone(dto.getTelefone())
                 .endereco(dto.getEndereco())
