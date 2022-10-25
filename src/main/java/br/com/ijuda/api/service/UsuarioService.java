@@ -1,6 +1,7 @@
 package br.com.ijuda.api.service;
 
 import br.com.ijuda.api.controller.dto.UsuarioDTO;
+import br.com.ijuda.api.exceptionhandler.UserNotFoundException;
 import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.model.Usuario;
 import br.com.ijuda.api.repository.ClienteRepository;
@@ -29,7 +30,7 @@ public class UsuarioService {
 
     public UsuarioDTO findByEmail(String email){
         Usuario usuario = usuarioRepository.findByEmail(email)
-                .orElseThrow(()-> new EmptyResultDataAccessException(1));
+                .orElseThrow(UserNotFoundException::new);
         return UsuarioDTO.builder()
                 .id(usuario.getId())
                 .nome(usuario.getNome())
