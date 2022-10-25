@@ -10,7 +10,6 @@ import lombok.Getter;
 public class ClienteDTO {
     private Long id;
     private Usuario usuario;
-    private byte[] imagem;
     private String cpf;
     private String telefone;
     private Endereco endereco;
