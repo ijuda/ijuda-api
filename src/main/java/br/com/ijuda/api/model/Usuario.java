@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -15,8 +17,11 @@ import java.util.List;
 @SequenceGenerator(name = "SEQUENCE", sequenceName = "usuario_id_seq", allocationSize = 1)
 public class Usuario extends BaseEntity {
 
+	@NotNull
 	private String nome;
+	@Email
 	private String email;
+	@NotNull
 	private String senha;
 
 	@ManyToMany(fetch = FetchType.EAGER)
