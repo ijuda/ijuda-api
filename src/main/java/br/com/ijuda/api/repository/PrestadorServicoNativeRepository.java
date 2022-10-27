@@ -33,8 +33,12 @@ public class PrestadorServicoNativeRepository extends JpaNativeRepository {
     }
 
     private void getSelect(StringBuilder sql) {
-        sql.append(" SELECT ps_us.nome as prestadorServico, ");
+        sql.append(" SELECT ps_us.id as prestadorServicoId, ");
+        sql.append(" ps_us.nome as prestadorServico, ");
+        sql.append(" s.id as servicoId, ");
         sql.append(" s.nome as servico, ");
+        sql.append(" serv_cat.id as categoriaId, ");
+        sql.append(" serv_cat.nome as categoria, ");
         sql.append(" ps_us.imagem as imagem ");
     }
 
@@ -49,6 +53,10 @@ public class PrestadorServicoNativeRepository extends JpaNativeRepository {
         sql.append(" ON ps.id = us.id) ");
         sql.append(" AS ps_us ON ");
         sql.append(" sps.prestador_servico_id = ps_us.id ");
+        sql.append(" INNER JOIN (SELECT serv.id, cat.nome ");
+        sql.append(" from servico serv ");
+        sql.append(" INNER JOIN categoria cat ON serv.id = cat.id ) ");
+        sql.append(" AS serv_cat ON sps.servico_id = serv_cat.id ");
     }
 
     private void getRestricoes(StringBuilder sql, BuscaServicoPrestadorFilter filter) {
@@ -57,11 +65,19 @@ public class PrestadorServicoNativeRepository extends JpaNativeRepository {
         if (Objects.nonNull(filter.getServicos()) && !filter.getServicos().isEmpty()) {
             sql.append(" and s.id in (:servicos) ");
         }
+
+        if (Objects.nonNull(filter.getCategorias()) && !filter.getCategorias().isEmpty()) {
+            sql.append(" and serv_cat.id in (:categorias) ");
+        }
     }
 
     private void addParameter(BuscaServicoPrestadorFilter filter, Query nativeQuery) {
         if (Objects.nonNull(filter.getServicos()) && !filter.getServicos().isEmpty()) {
             nativeQuery.setParameter("servicos", filter.getServicos());
+        }
+
+        if (Objects.nonNull(filter.getCategorias()) && !filter.getCategorias().isEmpty()) {
+            nativeQuery.setParameter("categorias", filter.getCategorias());
         }
     }
 

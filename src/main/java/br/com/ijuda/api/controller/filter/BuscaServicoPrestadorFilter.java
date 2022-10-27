@@ -11,4 +11,6 @@ public class BuscaServicoPrestadorFilter {
 
     private List<Long> servicos;
 
+    private List<Long> categorias;
+
 }

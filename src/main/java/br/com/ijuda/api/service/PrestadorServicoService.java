@@ -1,13 +1,19 @@
 package br.com.ijuda.api.service;
 
+import br.com.ijuda.api.controller.dto.BuscaServicoPrestadorDTO;
 import br.com.ijuda.api.controller.dto.ClienteDTO;
+import br.com.ijuda.api.controller.dto.Paginator;
 import br.com.ijuda.api.controller.dto.PrestadorServicoDTO;
+import br.com.ijuda.api.controller.filter.BuscaServicoPrestadorFilter;
 import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.model.PrestadorServico;
+import br.com.ijuda.api.repository.PrestadorServicoNativeRepository;
 import br.com.ijuda.api.repository.PrestadorServicoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,14 +25,17 @@ public class PrestadorServicoService {
     @Autowired
     private PrestadorServicoRepository prestadorServicoRepository;
 
-    public PrestadorServico atualizar(Long codigo, PrestadorServico prestadorServico){
+    @Autowired
+    private PrestadorServicoNativeRepository prestadorServicoNativeRepository;
+
+    public PrestadorServico atualizar(Long codigo, PrestadorServico prestadorServico) {
         PrestadorServico prestadorServicoSalvo = findPrestadorServicoByCodigo(codigo);
 
-        BeanUtils.copyProperties(prestadorServico,prestadorServicoSalvo,"codigo");
+        BeanUtils.copyProperties(prestadorServico, prestadorServicoSalvo, "codigo");
         return prestadorServicoRepository.save(prestadorServicoSalvo);
     }
 
-    public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo){
+    public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
         PrestadorServico prestadorServicoSalvo = findPrestadorServicoByCodigo(codigo);
         prestadorServicoSalvo.setAtivo(ativo);
         prestadorServicoRepository.save(prestadorServicoSalvo);
@@ -51,7 +60,19 @@ public class PrestadorServicoService {
         ).collect(Collectors.toList());
     }
 
+    public Paginator<BuscaServicoPrestadorDTO> buscaPrestadorServicoByFilter(BuscaServicoPrestadorFilter filter, Pageable pageable) {
+        Page<BuscaServicoPrestadorDTO> page = prestadorServicoNativeRepository.findByFilter(filter, pageable);
+        List<BuscaServicoPrestadorDTO> resultado = page.getContent()
+                .stream().map(r -> BuscaServicoPrestadorDTO.builder()
+                        .prestadorServicoId(r.getPrestadorServicoId())
+                        .prestadorServico(r.getPrestadorServico())
+                        .servicoId(r.getServicoId())
+                        .servico(r.getServico())
+                        .categoriaId(r.getCategoriaId())
+                        .categoria(r.getCategoria())
+                        .imagem(r.getImagem())
+                        .build()
+                ).collect(Collectors.toList());
+        return new Paginator<>(page, resultado);
+    }
 }
-
-
-
