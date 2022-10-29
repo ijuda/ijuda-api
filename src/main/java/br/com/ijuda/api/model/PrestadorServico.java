@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -29,15 +27,10 @@ public class PrestadorServico  extends BaseEntity{
     @NotNull
     @Column(name = "ativo")
     private Boolean ativo;
-/*
-    @ManyToMany(mappedBy ="prestadoresServicos")
-    private List<Servico> servicos;
-*/
 
     @NotNull
     @JoinColumn(name = "usuario")
     @OneToOne(cascade=CascadeType.PERSIST)
     private Usuario usuario;
-
 
 }
