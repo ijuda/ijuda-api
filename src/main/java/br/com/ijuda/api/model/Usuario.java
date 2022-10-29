@@ -29,4 +29,6 @@ public class Usuario extends BaseEntity {
 		, inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
 	private List<Permissao> permissoes;
 
+	private String imagem;
+
 }

@@ -32,6 +32,7 @@ public class ClienteController {
     public ResponseEntity<Cliente> criar(@Valid @RequestBody Cliente cliente, HttpServletResponse response) {
         usuarioService.criptografar(cliente.getUsuario());
         Cliente clienteSalvo = clienteRepository.save(cliente);
+        usuarioService.adicionaImagem(clienteSalvo);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
 
@@ -63,5 +64,7 @@ public class ClienteController {
     public void atualizarPropriedadeAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo) {
         clienteService.atualizarPropriedadeAtivo(codigo,ativo);
     }
+
+
 }
 

@@ -33,6 +33,7 @@ public class PrestadorServicoController {
     @PostMapping
     public ResponseEntity<PrestadorServico> criar(@Valid @RequestBody PrestadorServico prestadorServico, HttpServletResponse response) {
         PrestadorServico prestadorServicoSalvo = prestadorServicoRepository.save(prestadorServico);
+        prestadorServicoService.adicionaImagem(prestadorServicoSalvo);
         return ResponseEntity.status(HttpStatus.CREATED).body(prestadorServicoSalvo);
     }
 
