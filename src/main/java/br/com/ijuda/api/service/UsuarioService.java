@@ -1,19 +1,13 @@
 package br.com.ijuda.api.service;
 
+import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.controller.dto.UsuarioDTO;
 import br.com.ijuda.api.exceptionhandler.UserNotFoundException;
-import br.com.ijuda.api.model.Cliente;
-import br.com.ijuda.api.model.PrestadorServico;
 import br.com.ijuda.api.model.Usuario;
-import br.com.ijuda.api.repository.ClienteRepository;
 import br.com.ijuda.api.repository.UsuarioRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -38,7 +32,7 @@ public class UsuarioService {
                 .email(usuario.getEmail()).build();
     }
 
-    public void adicionaImagem(Cliente cliente) {
+    public void adicionaImagem(ClienteDTO cliente) {
         if (cliente.getUsuario().getNome() != null ){
             String nome = cliente.getUsuario().getNome();
             String string = nome;
