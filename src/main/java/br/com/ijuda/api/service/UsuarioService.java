@@ -3,6 +3,7 @@ package br.com.ijuda.api.service;
 import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.controller.dto.UsuarioDTO;
 import br.com.ijuda.api.exceptionhandler.UserNotFoundException;
+import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.model.Usuario;
 import br.com.ijuda.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class UsuarioService {
                 .email(usuario.getEmail()).build();
     }
 
-    public void adicionaImagem(ClienteDTO cliente) {
+    public void adicionaImagem(Cliente cliente) {
         if (cliente.getUsuario().getNome() != null ){
             String nome = cliente.getUsuario().getNome();
             String string = nome;
