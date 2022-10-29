@@ -75,4 +75,20 @@ public class PrestadorServicoService {
                 ).collect(Collectors.toList());
         return new Paginator<>(page, resultado);
     }
+
+    public void adicionaImagem(PrestadorServico prestadorServicoSalvo) {
+        if (prestadorServicoSalvo.getUsuario().getNome() != null ){
+            String nome = prestadorServicoSalvo.getUsuario().getNome();
+            String string = nome;
+
+            String[] splitted= string.split(" ");
+
+            String splitted1= splitted[0];
+
+            String splitted2 = splitted[1];
+
+            String imagem ="https://ui-avatars.com/api/?name="+ splitted1 + "+"+ splitted2;
+            prestadorServicoSalvo.getUsuario().setImagem(imagem);
+        }
+    }
 }
