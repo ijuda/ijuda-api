@@ -1,10 +1,7 @@
 package br.com.ijuda.api.service;
 
-import br.com.ijuda.api.controller.dto.PagamentoDTO;
 import br.com.ijuda.api.controller.dto.ServicoDTO;
-import br.com.ijuda.api.model.Pagamento;
 import br.com.ijuda.api.model.Servico;
-import br.com.ijuda.api.model.SolicitacaoServico;
 import br.com.ijuda.api.repository.ServicoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +32,22 @@ public class ServicoService {
 
     public List<ServicoDTO> findAll() {
         List<Servico> servicoList = servicoRepository.findAll();
-        return servicoList.stream().map(dto -> ServicoDTO.builder()
-                .id(dto.getId())
-                .nome(dto.getNome())
-                .valor(dto.getValor())
-                .categoria(dto.getCategoria())
-                .build()
-        ).collect(Collectors.toList());
+        return servicoList.stream().map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public ServicoDTO save(Servico servico) {
+        Servico servicoSalvo = servicoRepository.save(servico);
+        return toDTO(servicoSalvo);
+    }
+
+    private ServicoDTO toDTO(Servico servico) {
+        return ServicoDTO.builder()
+                .id(servico.getId())
+                .nome(servico.getNome())
+                .valor(servico.getValor())
+                .categoria(servico.getCategoria())
+                .build();
     }
 }
 
