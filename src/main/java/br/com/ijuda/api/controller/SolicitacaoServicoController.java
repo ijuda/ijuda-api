@@ -1,8 +1,6 @@
 package br.com.ijuda.api.controller;
 
-import br.com.ijuda.api.controller.dto.ServicoDTO;
 import br.com.ijuda.api.controller.dto.SolicitacaoServicoDTO;
-import br.com.ijuda.api.model.PrestadorServico;
 import br.com.ijuda.api.model.SolicitacaoServico;
 import br.com.ijuda.api.repository.SolicitacaoServicoRepository;
 import br.com.ijuda.api.service.SolicitacaoServicoService;
@@ -36,7 +34,6 @@ public class SolicitacaoServicoController {
     public ResponseEntity<List<SolicitacaoServicoDTO>> findAll(){
         return ResponseEntity.ok(solicitacaoServicoService.findAll());
     }
-
 
     @GetMapping("/{codigo}")
     public ResponseEntity<SolicitacaoServico> buscarPeloCodigo(@PathVariable Long codigo) {

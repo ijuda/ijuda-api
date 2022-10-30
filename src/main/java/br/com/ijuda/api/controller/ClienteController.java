@@ -31,8 +31,8 @@ public class ClienteController {
     @PostMapping
     public ResponseEntity<ClienteDTO> criar(@Valid @RequestBody Cliente cliente, HttpServletResponse response) {
         usuarioService.criptografar(cliente.getUsuario());
+        usuarioService.adicionaImagem(cliente.getUsuario());
         ClienteDTO clienteSalvo = clienteService.save(cliente);
-        usuarioService.adicionaImagem(clienteSalvo);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
 
