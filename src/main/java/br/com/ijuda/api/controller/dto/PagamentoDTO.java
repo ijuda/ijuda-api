@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 public class PagamentoDTO {
     private Long id;
     private LocalDateTime dataPagamento;

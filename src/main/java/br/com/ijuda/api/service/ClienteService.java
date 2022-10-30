@@ -48,14 +48,14 @@ public class ClienteService {
     }
 
     public ClienteDTO toDTO(Cliente cliente){
-        var clienteDTO = new ClienteDTO();
-        clienteDTO.setAtivo(cliente.getAtivo());
-        clienteDTO.setCpf(cliente.getCpf());
-        clienteDTO.setEndereco(cliente.getEndereco());
-        clienteDTO.setId(cliente.getId());
-        clienteDTO.setUsuario(cliente.getUsuario());
-        clienteDTO.setTelefone(cliente.getTelefone());
-        return clienteDTO;
+        return ClienteDTO.builder()
+                .ativo(cliente.getAtivo())
+                .cpf(cliente.getCpf())
+                .endereco(cliente.getEndereco())
+                .id(cliente.getId())
+                .usuario(cliente.getUsuario())
+                .telefone(cliente.getTelefone())
+                .build();
     }
 
 }

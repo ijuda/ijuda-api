@@ -1,11 +1,8 @@
 package br.com.ijuda.api.service;
 
 import br.com.ijuda.api.controller.dto.CategoriaDTO;
-import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.model.Categoria;
-import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.CategoriaRepository;
-import br.com.ijuda.api.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -45,10 +42,10 @@ public class CategoriaService {
     }
 
     private CategoriaDTO toDTO(Categoria categoria) {
-        var categoriaDTO = new CategoriaDTO();
-        categoriaDTO.setId(categoria.getId());
-        categoriaDTO.setNome(categoria.getNome());
-        return categoriaDTO;
+        return CategoriaDTO.builder()
+                .id(categoria.getId())
+                .nome(categoria.getNome())
+                .build();
     }
 }
 

@@ -34,12 +34,12 @@ public class PagamentoService {
     }
 
     private PagamentoDTO toDTO(Pagamento pagamento) {
-        var pagamentoDTO = new PagamentoDTO();
-        pagamentoDTO.setId(pagamento.getId());
-        pagamentoDTO.setDataPagamento(pagamento.getDataPagamento());
-        pagamentoDTO.setCliente(pagamento.getCliente());
-        pagamentoDTO.setValor(pagamento.getValor());
-        return pagamentoDTO;
+        return PagamentoDTO.builder()
+                .id(pagamento.getId())
+                .dataPagamento(pagamento.getDataPagamento())
+                .cliente(pagamento.getCliente())
+                .valor(pagamento.getValor())
+                .build();
     }
 }
 
