@@ -24,15 +24,23 @@ public class PagamentoService {
 
     public List<PagamentoDTO> findAll() {
         List<Pagamento> pagamentoList = pagamentoRepository.findAll();
-        return pagamentoList.stream().map(dto -> PagamentoDTO.builder()
-                .id(dto.getId())
-                .dataPagamento(dto.getDataPagamento())
-                .cliente(dto.getCliente())
-                .valor(dto.getValor())
-                .build()
-        ).collect(Collectors.toList());
+        return pagamentoList.stream().map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
+    public PagamentoDTO save(Pagamento pagamento) {
+        Pagamento pagamentoSalvo = pagamentoRepository.save(pagamento);
+        return toDTO(pagamentoSalvo);
+    }
+
+    private PagamentoDTO toDTO(Pagamento pagamento) {
+        return PagamentoDTO.builder()
+                .id(pagamento.getId())
+                .dataPagamento(pagamento.getDataPagamento())
+                .cliente(pagamento.getCliente())
+                .valor(pagamento.getValor())
+                .build();
+    }
 }
 
 

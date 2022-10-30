@@ -1,6 +1,7 @@
 package br.com.ijuda.api.controller;
 
 import br.com.ijuda.api.controller.dto.ClienteDTO;
+import br.com.ijuda.api.exceptionhandler.ClienteNaoEncontradoException;
 import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.ClienteRepository;
 import br.com.ijuda.api.service.ClienteService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/cliente")
@@ -29,10 +29,10 @@ public class ClienteController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Cliente> criar(@Valid @RequestBody Cliente cliente, HttpServletResponse response) {
+    public ResponseEntity<ClienteDTO> criar(@Valid @RequestBody Cliente cliente, HttpServletResponse response) {
         usuarioService.criptografar(cliente.getUsuario());
-        Cliente clienteSalvo = clienteRepository.save(cliente);
-        usuarioService.adicionaImagem(clienteSalvo);
+        usuarioService.adicionaImagem(cliente.getUsuario());
+        ClienteDTO clienteSalvo = clienteService.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
     }
 
@@ -42,9 +42,10 @@ public class ClienteController {
     }
 
     @GetMapping("/{codigo}")
-    public ResponseEntity<Cliente> buscarPeloCodigo(@PathVariable Long codigo) {
-        Optional<Cliente> cliente = clienteRepository.findById(codigo);
-        return cliente.isPresent()? ResponseEntity.ok(cliente.get()) : ResponseEntity.notFound().build();
+    public ClienteDTO buscarPeloCodigo(@PathVariable Long codigo) {
+        Cliente cliente = clienteRepository.findById(codigo)
+                .orElseThrow(ClienteNaoEncontradoException::new);
+        return clienteService.toDTO(cliente);
     }
 
     @DeleteMapping("/{codigo}")
@@ -64,7 +65,6 @@ public class ClienteController {
     public void atualizarPropriedadeAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo) {
         clienteService.atualizarPropriedadeAtivo(codigo,ativo);
     }
-
 
 }
 

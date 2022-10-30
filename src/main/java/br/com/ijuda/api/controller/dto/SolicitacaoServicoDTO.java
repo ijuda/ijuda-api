@@ -4,8 +4,10 @@ import br.com.ijuda.api.model.*;
 import br.com.ijuda.api.model.enumeration.StatusSolicitacao;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Builder
 public class SolicitacaoServicoDTO {
     private Long id;

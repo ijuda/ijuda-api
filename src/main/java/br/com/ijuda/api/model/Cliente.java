@@ -18,9 +18,6 @@ public class Cliente extends BaseEntity {
     @OneToOne(cascade=CascadeType.PERSIST)
     private Usuario usuario;
 
-    @Column
-    private byte[] imagem;
-
     @Column(name = "cpf")
     private String cpf;
 

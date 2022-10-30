@@ -1,8 +1,6 @@
 package br.com.ijuda.api.service;
 
-import br.com.ijuda.api.controller.dto.PrestadorServicoDTO;
 import br.com.ijuda.api.controller.dto.SolicitacaoServicoDTO;
-import br.com.ijuda.api.model.PrestadorServico;
 import br.com.ijuda.api.model.SolicitacaoServico;
 import br.com.ijuda.api.repository.SolicitacaoServicoRepository;
 import org.springframework.beans.BeanUtils;
@@ -40,21 +38,29 @@ public class SolicitacaoServicoService {
 
     public List<SolicitacaoServicoDTO> findAll() {
         List<SolicitacaoServico> solicitacaoServicoList = solicitacaoServicoRepository.findAll();
-        return solicitacaoServicoList.stream().map(dto -> SolicitacaoServicoDTO.builder()
-                .id(dto.getId())
-                .descricao(dto.getDescricao())
-                .total(dto.getTotal())
-                .cliente(dto.getCliente())
-                .prestadorServico(dto.getPrestadorServico())
-                .pagamento(dto.getPagamento())
-                .servico(dto.getServico())
-                .statusSolicitacao(dto.getStatusSolicitacao())
-                .endereco(dto.getEndereco())
-                .ativo(dto.getAtivo())
-                .build()
-        ).collect(Collectors.toList());
+        return solicitacaoServicoList.stream().map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
+    public SolicitacaoServicoDTO save(SolicitacaoServico solicitacaoServico) {
+        SolicitacaoServico solicitacaoServicoSalva = solicitacaoServicoRepository.save(solicitacaoServico);
+        return toDTO(solicitacaoServicoSalva);
+    }
+
+    private SolicitacaoServicoDTO toDTO(SolicitacaoServico solicitacaoServico) {
+        return SolicitacaoServicoDTO.builder()
+                .id(solicitacaoServico.getId())
+                .descricao(solicitacaoServico.getDescricao())
+                .total(solicitacaoServico.getTotal())
+                .cliente(solicitacaoServico.getCliente())
+                .prestadorServico(solicitacaoServico.getPrestadorServico())
+                .pagamento(solicitacaoServico.getPagamento())
+                .servico(solicitacaoServico.getServico())
+                .statusSolicitacao(solicitacaoServico.getStatusSolicitacao())
+                .endereco(solicitacaoServico.getEndereco())
+                .ativo(solicitacaoServico.getAtivo())
+                .build();
+    }
 }
 
 
