@@ -35,13 +35,21 @@ public class CategoriaService {
 
     public List<CategoriaDTO> findAll() {
         List<Categoria> categoriaList = categoriaRepository.findAll();
-        return categoriaList.stream().map(dto -> CategoriaDTO.builder()
-                .id(dto.getId())
-                .nome(dto.getNome())
-                .build()
-        ).collect(Collectors.toList());
+        return categoriaList.stream().map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
+    public CategoriaDTO save(Categoria categoria) {
+        Categoria categoriaSalva = categoriaRepository.save(categoria);
+        return toDTO(categoriaSalva);
+    }
+
+    private CategoriaDTO toDTO(Categoria categoria) {
+        var categoriaDTO = new CategoriaDTO();
+        categoriaDTO.setId(categoria.getId());
+        categoriaDTO.setNome(categoria.getNome());
+        return categoriaDTO;
+    }
 }
 
 

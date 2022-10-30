@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/servico")
+@RequestMapping("/servico") //todo implementar dto
 public class ServicoController {
 
     @Autowired

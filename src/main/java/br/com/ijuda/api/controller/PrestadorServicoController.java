@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/prestadorservico")
-public class PrestadorServicoController {
+public class PrestadorServicoController { //todo: implementar dto
 
     @Autowired
     private PrestadorServicoRepository prestadorServicoRepository;

@@ -8,8 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@Builder
-public class CategoriaDTO implements Serializable {
+public class CategoriaDTO {
     private Long id;
     private String nome;
 }

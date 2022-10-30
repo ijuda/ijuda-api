@@ -1,13 +1,9 @@
 package br.com.ijuda.api.controller;
 
 import br.com.ijuda.api.controller.dto.CategoriaDTO;
-import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.model.Categoria;
-import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.CategoriaRepository;
-import br.com.ijuda.api.repository.ClienteRepository;
 import br.com.ijuda.api.service.CategoriaService;
-import br.com.ijuda.api.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +25,8 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @PostMapping
-    public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
-        Categoria categoriaSalva = categoriaRepository.save(categoria);
+    public ResponseEntity<CategoriaDTO> criar(@Valid @RequestBody Categoria categoria, HttpServletResponse response) {
+        CategoriaDTO categoriaSalva = categoriaService.save(categoria);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
     }
 
