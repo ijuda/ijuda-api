@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/prestadorservico")
-public class PrestadorServicoController { //todo: implementar dto
+public class PrestadorServicoController {
 
     @Autowired
     private PrestadorServicoRepository prestadorServicoRepository;
@@ -31,8 +31,8 @@ public class PrestadorServicoController { //todo: implementar dto
     private PrestadorServicoService prestadorServicoService;
 
     @PostMapping
-    public ResponseEntity<PrestadorServico> criar(@Valid @RequestBody PrestadorServico prestadorServico, HttpServletResponse response) {
-        PrestadorServico prestadorServicoSalvo = prestadorServicoRepository.save(prestadorServico);
+    public ResponseEntity<PrestadorServicoDTO> criar(@Valid @RequestBody PrestadorServico prestadorServico, HttpServletResponse response) {
+        PrestadorServicoDTO prestadorServicoSalvo = prestadorServicoService.save(prestadorServico);
         prestadorServicoService.adicionaImagem(prestadorServicoSalvo);
         return ResponseEntity.status(HttpStatus.CREATED).body(prestadorServicoSalvo);
     }

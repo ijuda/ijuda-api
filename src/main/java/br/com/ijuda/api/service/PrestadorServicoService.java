@@ -1,11 +1,9 @@
 package br.com.ijuda.api.service;
 
 import br.com.ijuda.api.controller.dto.BuscaServicoPrestadorDTO;
-import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.controller.dto.Paginator;
 import br.com.ijuda.api.controller.dto.PrestadorServicoDTO;
 import br.com.ijuda.api.controller.filter.BuscaServicoPrestadorFilter;
-import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.model.PrestadorServico;
 import br.com.ijuda.api.repository.PrestadorServicoNativeRepository;
 import br.com.ijuda.api.repository.PrestadorServicoRepository;
@@ -49,15 +47,8 @@ public class PrestadorServicoService {
 
     public List<PrestadorServicoDTO> findAll() {
         List<PrestadorServico> prestadorServicoList = prestadorServicoRepository.findAll();
-        return prestadorServicoList.stream().map(dto -> PrestadorServicoDTO.builder()
-                .id(dto.getId())
-                .usuario(dto.getUsuario())
-                .cpf(dto.getCpf())
-                .telefone(dto.getTelefone())
-                .endereco(dto.getEndereco())
-                .ativo(dto.getAtivo())
-                .build()
-        ).collect(Collectors.toList());
+        return prestadorServicoList.stream().map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
     public Paginator<BuscaServicoPrestadorDTO> buscaPrestadorServicoByFilter(BuscaServicoPrestadorFilter filter, Pageable pageable) {
@@ -76,7 +67,7 @@ public class PrestadorServicoService {
         return new Paginator<>(page, resultado);
     }
 
-    public void adicionaImagem(PrestadorServico prestadorServicoSalvo) {
+    public void adicionaImagem(PrestadorServicoDTO prestadorServicoSalvo) {
         if (prestadorServicoSalvo.getUsuario().getNome() != null ){
             String nome = prestadorServicoSalvo.getUsuario().getNome();
             String string = nome;
@@ -90,5 +81,21 @@ public class PrestadorServicoService {
             String imagem ="https://ui-avatars.com/api/?name="+ splitted1 + "+"+ splitted2;
             prestadorServicoSalvo.getUsuario().setImagem(imagem);
         }
+    }
+
+    public PrestadorServicoDTO save(PrestadorServico prestadorServico) {
+        PrestadorServico prestadorSalvo = prestadorServicoRepository.save(prestadorServico);
+        return toDTO(prestadorSalvo);
+    }
+
+    private PrestadorServicoDTO toDTO(PrestadorServico prestadorSalvo) {
+        return PrestadorServicoDTO.builder()
+                .id(prestadorSalvo.getId())
+                .telefone(prestadorSalvo.getTelefone())
+                .cpf(prestadorSalvo.getCpf())
+                .endereco(prestadorSalvo.getEndereco())
+                .ativo(prestadorSalvo.getAtivo())
+                .usuario(prestadorSalvo.getUsuario())
+                .build();
     }
 }

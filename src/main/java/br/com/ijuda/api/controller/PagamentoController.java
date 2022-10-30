@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pagamento")//todo: implementar pagamento dto
+@RequestMapping("/pagamento")
 public class PagamentoController {
 
     @Autowired
