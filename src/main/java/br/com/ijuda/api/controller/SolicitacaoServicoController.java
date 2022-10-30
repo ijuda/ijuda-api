@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/solicitacaoservico") // todo: implementar dto
+@RequestMapping("/solicitacaoservico")
 public class SolicitacaoServicoController {
 
     @Autowired
@@ -27,8 +27,8 @@ public class SolicitacaoServicoController {
     private SolicitacaoServicoService solicitacaoServicoService;
 
     @PostMapping
-    public ResponseEntity<SolicitacaoServico> criar(@Valid @RequestBody SolicitacaoServico solicitacaoServico, HttpServletResponse response) {
-        SolicitacaoServico solicitacaoServicoSalva = solicitacaoServicoRepository.save(solicitacaoServico);
+    public ResponseEntity<SolicitacaoServicoDTO> criar(@Valid @RequestBody SolicitacaoServico solicitacaoServico, HttpServletResponse response) {
+        SolicitacaoServicoDTO solicitacaoServicoSalva = solicitacaoServicoService.save(solicitacaoServico);
         return ResponseEntity.status(HttpStatus.CREATED).body(solicitacaoServicoSalva);
     }
 
