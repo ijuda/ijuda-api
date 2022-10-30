@@ -1,5 +1,4 @@
 package br.com.ijuda.api.service;
-
 import br.com.ijuda.api.controller.dto.UsuarioDTO;
 import br.com.ijuda.api.exceptionhandler.UserNotFoundException;
 import br.com.ijuda.api.model.Usuario;
