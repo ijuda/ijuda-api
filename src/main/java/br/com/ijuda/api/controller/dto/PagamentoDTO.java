@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Getter
-@Builder
+@Setter
 public class PagamentoDTO {
     private Long id;
     private LocalDateTime dataPagamento;

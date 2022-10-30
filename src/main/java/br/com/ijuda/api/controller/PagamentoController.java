@@ -29,8 +29,8 @@ public class PagamentoController {
     private PagamentoService pagamentoService;
 
     @PostMapping
-    public ResponseEntity<Pagamento> criar(@Valid @RequestBody Pagamento pagamento, HttpServletResponse response) {
-        Pagamento pagamentoSalvo = pagamentoRepository.save(pagamento);
+    public ResponseEntity<PagamentoDTO> criar(@Valid @RequestBody Pagamento pagamento, HttpServletResponse response) {
+        PagamentoDTO pagamentoSalvo = pagamentoService.save(pagamento);
         return ResponseEntity.status(HttpStatus.CREATED).body(pagamentoSalvo);
     }
 
