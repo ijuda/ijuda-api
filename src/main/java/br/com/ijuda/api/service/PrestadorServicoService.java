@@ -96,6 +96,7 @@ public class PrestadorServicoService {
                 .endereco(prestadorSalvo.getEndereco())
                 .ativo(prestadorSalvo.getAtivo())
                 .usuario(prestadorSalvo.getUsuario())
+                .servicos(prestadorSalvo.getServicos())
                 .build();
     }
 }

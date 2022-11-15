@@ -19,4 +19,5 @@ public class PrestadorServicoDTO {
     private Endereco endereco;
     private Boolean ativo;
     private Usuario usuario;
+    private List<Servico> servicos;
 }
