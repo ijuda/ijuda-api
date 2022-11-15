@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("deprecation")
-@Profile("oauth-security")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
