@@ -42,6 +42,12 @@ public class PrestadorServicoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(prestadorServicoSalvo);
     }
 
+    @PostMapping("/lista")
+    public ResponseEntity<List<PrestadorServicoDTO>> criarList(@Valid @RequestBody List<PrestadorServico>  prestadorServico) {
+        List<PrestadorServicoDTO> prestadorServicoSalvo = prestadorServicoService.save2(prestadorServico);
+        return ResponseEntity.status(HttpStatus.CREATED).body(prestadorServicoSalvo);
+    }
+
     @Operation(summary = "Lista todos",
             responses = {
                     @ApiResponse(responseCode = "200"),

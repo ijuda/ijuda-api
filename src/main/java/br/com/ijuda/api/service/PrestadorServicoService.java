@@ -83,6 +83,30 @@ public class PrestadorServicoService {
         }
     }
 
+    public void adicionaImagem2(List<PrestadorServico> prestadorServicoSalvo) {
+        for (PrestadorServico prestador: prestadorServicoSalvo){
+            if (prestador.getUsuario().getNome() != null ){
+                String nome = prestador.getUsuario().getNome();
+                String string = nome;
+
+                String[] splitted= string.split(" ");
+
+                String splitted1= splitted[0];
+
+                String splitted2 = splitted[1];
+
+                String imagem ="https://ui-avatars.com/api/?name="+ splitted1 + "+"+ splitted2;
+                prestador.getUsuario().setImagem(imagem);
+            }
+        }
+    }
+
+    public List<PrestadorServicoDTO> save2(List<PrestadorServico> prestadorServico) {
+        adicionaImagem2(prestadorServico);
+        List<PrestadorServico> prestadorServicos = prestadorServicoRepository.saveAll(prestadorServico);
+        return prestadorServicos.stream().map(this::toDTO).collect(Collectors.toList());
+    }
+
     public PrestadorServicoDTO save(PrestadorServico prestadorServico) {
         PrestadorServico prestadorSalvo = prestadorServicoRepository.save(prestadorServico);
         return toDTO(prestadorSalvo);
