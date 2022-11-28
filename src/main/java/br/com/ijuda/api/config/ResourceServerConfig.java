@@ -35,7 +35,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter{
     public void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/cliente", "/prestadorservico/busca", "/prestadorservico/prestadoresServico", "/categoria/categorias", "/prestadorservico", "/oauth/token","/*.html", "/v2/api-docs", "/webjars/","/configuration/", "/swagger-resources/*", "/servico", "/servico/servicos").permitAll()
+                .antMatchers("/cliente", "/prestadorservico/busca", "/prestadorservico/prestadoresServico", "/usuario/email", "/categoria/categorias", "/prestadorservico", "/oauth/token","/*.html", "/v2/api-docs", "/webjars/","/configuration/", "/swagger-resources/*", "/servico", "/servico/servicos").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
