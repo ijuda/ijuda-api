@@ -20,11 +20,11 @@ values (true,'123.586.633-52','Bonsucesso','60545-505','Fortaleza','casa', 903, 
        (true,'151.887.463-01','Conjunto Esperança','60763-490','Fortaleza','casa', 856, 'Brasil', 'Avenida G','85 982804165', 16);
 
 INSERT INTO prestador_servico(ativo, cpf, bairro, cep, cidade, complemento, numero, pais, rua, telefone, usuario)
-VALUES(true, '882.702.323-27', 'Henrique Jorge', '60525-470', 'Fotaleza', 'casa', 284, 'Brasil', 'Vila São Paulino', '85 983977764', 17),
-      (true, '061.221.373-08', 'Vila Velha', '60349-432', 'Fotaleza', 'casa', 999, 'Brasil', 'Rua Eduardo Araújo', '85 997482022', 18),
-      (true, '750.917.253-50', 'Alto da Balança', '60851-195', 'Fotaleza', 'casa', 586, 'Brasil', 'Avenida Borges de Melo', '85 996773331', 19),
-      (true, '597.414.493-72', 'Conjunto Ceará', '60531-100', 'Fotaleza', 'casa', 328, 'Brasil', 'Conjunto Ceará', '85 993169597', 20),
-      (true, '390.973.413-88', 'Meireles', '60170-240', 'Fotaleza', 'casa', 906, 'Brasil', 'Rua Coronel Linhares', '85 991115028', 21);
+VALUES(true, '882.702.323-27', 'Henrique Jorge', '60525-470', 'Fortaleza', 'casa', 284, 'Brasil', 'Vila São Paulino', '85 983977764', 17),
+      (true, '061.221.373-08', 'Vila Velha', '60349-432', 'Fortaleza', 'casa', 999, 'Brasil', 'Rua Eduardo Araújo', '85 997482022', 18),
+      (true, '750.917.253-50', 'Alto da Balança', '60851-195', 'Fortaleza', 'casa', 586, 'Brasil', 'Avenida Borges de Melo', '85 996773331', 19),
+      (true, '597.414.493-72', 'Conjunto Ceará', '60531-100', 'Fortaleza', 'casa', 328, 'Brasil', 'Conjunto Ceará', '85 993169597', 20),
+      (true, '390.973.413-88', 'Meireles', '60170-240', 'Fortaleza', 'casa', 906, 'Brasil', 'Rua Coronel Linhares', '85 991115028', 21);
 
 
 INSERT INTO usuario_permissao
