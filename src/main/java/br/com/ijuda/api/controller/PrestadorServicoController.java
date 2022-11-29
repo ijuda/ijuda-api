@@ -1,5 +1,6 @@
 package br.com.ijuda.api.controller;
 
+import br.com.ijuda.api.service.UsuarioService;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,8 +36,13 @@ public class PrestadorServicoController {
     @Autowired
     private PrestadorServicoService prestadorServicoService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostMapping
     public ResponseEntity<PrestadorServicoDTO> criar(@Valid @RequestBody PrestadorServico prestadorServico, HttpServletResponse response) {
+        usuarioService.adicionaImagem(prestadorServico.getUsuario());
+        usuarioService.criptografar(prestadorServico.getUsuario());
         PrestadorServicoDTO prestadorServicoSalvo = prestadorServicoService.save(prestadorServico);
         prestadorServicoService.adicionaImagem(prestadorServicoSalvo);
         return ResponseEntity.status(HttpStatus.CREATED).body(prestadorServicoSalvo);
