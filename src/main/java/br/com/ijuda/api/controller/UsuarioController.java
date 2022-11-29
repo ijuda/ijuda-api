@@ -1,8 +1,6 @@
 package br.com.ijuda.api.controller;
 
 import br.com.ijuda.api.controller.dto.UsuarioDTO;
-import br.com.ijuda.api.model.Cliente;
-import br.com.ijuda.api.model.Servico;
 import br.com.ijuda.api.model.Usuario;
 import br.com.ijuda.api.repository.UsuarioRepository;
 import br.com.ijuda.api.service.UsuarioService;
@@ -26,10 +24,11 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {
-        Usuario usuarioSalvo = usuarioService.criptografar(usuario);
-        usuarioSalvo = usuarioRepository.save(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+    public ResponseEntity<UsuarioDTO> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {
+        usuarioService.adicionaImagem(usuario);
+        Usuario usuarioCripto = usuarioService.criptografar(usuario);
+        UsuarioDTO usuarioSalvoDto = usuarioService.save(usuarioCripto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvoDto);
     }
 
     @GetMapping("/{codigo}")

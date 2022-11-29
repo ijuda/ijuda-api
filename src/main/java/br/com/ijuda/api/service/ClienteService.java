@@ -17,6 +17,11 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    public ClienteDTO save(Cliente cliente) {
+        Cliente clienteSalvo = clienteRepository.save(cliente);
+        return toDTO(clienteSalvo);
+    }
+
     public Cliente atualizar(Long codigo,Cliente cliente){
         Cliente clienteSalvo = findClienteByCodigo(codigo);
 
@@ -38,16 +43,21 @@ public class ClienteService {
 
     public List<ClienteDTO> findAll() {
         List<Cliente> clienteList = clienteRepository.findAll();
-        return clienteList.stream().map(dto -> ClienteDTO.builder()
-                .id(dto.getId())
-                .usuario(dto.getUsuario())
-                .cpf(dto.getCpf())
-                .telefone(dto.getTelefone())
-                .endereco(dto.getEndereco())
-                .ativo(dto.getAtivo())
-                .build()
-        ).collect(Collectors.toList());
+        return clienteList.stream().map(this::toDTO)
+                .collect(Collectors.toList());
     }
+
+    public ClienteDTO toDTO(Cliente cliente){
+        return ClienteDTO.builder()
+                .ativo(cliente.getAtivo())
+                .cpf(cliente.getCpf())
+                .endereco(cliente.getEndereco())
+                .id(cliente.getId())
+                .usuario(cliente.getUsuario())
+                .telefone(cliente.getTelefone())
+                .build();
+    }
+
 }
 
 

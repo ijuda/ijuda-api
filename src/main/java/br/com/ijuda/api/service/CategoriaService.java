@@ -1,11 +1,8 @@
 package br.com.ijuda.api.service;
 
 import br.com.ijuda.api.controller.dto.CategoriaDTO;
-import br.com.ijuda.api.controller.dto.ClienteDTO;
 import br.com.ijuda.api.model.Categoria;
-import br.com.ijuda.api.model.Cliente;
 import br.com.ijuda.api.repository.CategoriaRepository;
-import br.com.ijuda.api.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -35,13 +32,21 @@ public class CategoriaService {
 
     public List<CategoriaDTO> findAll() {
         List<Categoria> categoriaList = categoriaRepository.findAll();
-        return categoriaList.stream().map(dto -> CategoriaDTO.builder()
-                .id(dto.getId())
-                .nome(dto.getNome())
-                .build()
-        ).collect(Collectors.toList());
+        return categoriaList.stream().map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
+    public CategoriaDTO save(Categoria categoria) {
+        Categoria categoriaSalva = categoriaRepository.save(categoria);
+        return toDTO(categoriaSalva);
+    }
+
+    private CategoriaDTO toDTO(Categoria categoria) {
+        return CategoriaDTO.builder()
+                .id(categoria.getId())
+                .nome(categoria.getNome())
+                .build();
+    }
 }
 
 

@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+  datasource:
+    username: {JDBC_DATABASE_USERNAME}
+    password: {JDBC_DATABASE_PASSWORD}
+    url: {DATABASE_URL}
+  flyway:
+    baseline-on-migrate: true
+
+project:
+  seguranca:
+    enable-https: true
+  origin-permitida: https://react-ijuda-prod.herokuapp.com

@@ -1,0 +1,9 @@
+delete from solicitacao_servico;
+delete from servico_prestadores_servicos;
+delete from servico;
+delete from categoria;
+delete from pagamento;
+delete from usuario_permissao;
+delete from prestador_servico;
+delete from cliente;
+delete from usuario;
