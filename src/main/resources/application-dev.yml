@@ -14,4 +14,4 @@ spring:
 project:
   seguranca:
     enable-https: true
-  origin-permitida: https://react-ijuda-dev.herokuapp.com
+  origin-permitida: https://localhost:4200
