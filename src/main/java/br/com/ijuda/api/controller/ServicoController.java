@@ -5,6 +5,7 @@ import br.com.ijuda.api.model.Servico;
 import br.com.ijuda.api.repository.ServicoRepository;
 import br.com.ijuda.api.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,12 @@ public class ServicoController {
     public ResponseEntity<List<ServicoDTO>> findAll(){
         return ResponseEntity.ok(servicoService.findAll());
     }
+
+    @GetMapping("/por-categoria")
+    public ResponseEntity<List<ServicoDTO>> listaPorCategoria(@RequestParam(name = "categoriaId") String categoria){
+        return ResponseEntity.ok(servicoService.findForCategory(categoria));
+    }
+
 
     @GetMapping("/{codigo}")
     public ResponseEntity<Servico> buscarPeloCodigo(@PathVariable Long codigo) {

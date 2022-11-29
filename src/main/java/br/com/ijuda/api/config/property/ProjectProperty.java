@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProjectProperty {
 
-	private String originPermitida = "http://localhost:8090";
+	private String originPermitida = "${project.seguranca.origin-permitida}";
 
 	private final Seguranca seguranca = new Seguranca();
 

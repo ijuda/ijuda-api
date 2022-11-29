@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+  datasource:
+    username: postgres
+    password: 123456
+    url: jdbc:postgresql://localhost:5432/ijudaapi?currentSchema=public&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+  flyway:
+    baseline-on-migrate: true
+
+project:
+  seguranca:
+    enable-https: true
+  origin-permitida: https://localhost:4200

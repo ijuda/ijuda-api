@@ -1,0 +1,17 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /ijuda-api
+
+spring:
+  application: ijuda-api
+  profiles:
+    active: ${APP_PROFILE:local}
+  jpa:
+    database: POSTGRESQL
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher

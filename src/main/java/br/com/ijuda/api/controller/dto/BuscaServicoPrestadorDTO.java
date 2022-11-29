@@ -1,6 +1,6 @@
 package br.com.ijuda.api.controller.dto;
 
-import br.com.ijuda.api.util.StringUtil;
+import br.com.ijuda.api.token.util.StringUtil;
 import lombok.Builder;
 import lombok.Getter;
 

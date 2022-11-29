@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ServicoService {
@@ -48,6 +49,11 @@ public class ServicoService {
                 .valor(servico.getValor())
                 .categoria(servico.getCategoria())
                 .build();
+    }
+
+    public List<ServicoDTO> findForCategory(String categoria) {
+        List<Servico> byCategoria = servicoRepository.findByCategoria(categoria);
+        return (List<ServicoDTO>) byCategoria.stream().map(this::toDTO);
     }
 }
 

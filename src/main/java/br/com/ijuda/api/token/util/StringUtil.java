@@ -1,4 +1,4 @@
-package br.com.ijuda.api.util;
+package br.com.ijuda.api.token.util;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
